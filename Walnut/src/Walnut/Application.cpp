@@ -1,5 +1,7 @@
 #include "Application.h"
 
+#include "Walnut/Events/ApplicationEvent.h"
+#include "Walnut/Log.h"
 
 namespace Walnut {
 
@@ -10,6 +12,7 @@ namespace Walnut {
 
 	}
 	void Application::Run() {
-		while (true);
+		WindowResizeEvent e(1280, 720);
+		WN_TRACE(e);
 	}
 }
