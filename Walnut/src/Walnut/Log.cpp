@@ -1,3 +1,4 @@
+#include "wnpch.h"
 #include "Log.h"
 namespace Walnut
 {
