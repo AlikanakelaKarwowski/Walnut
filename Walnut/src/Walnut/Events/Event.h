@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Walnut/Core.h"
-#include <string>
-#include <functional>
 
 
 namespace Walnut
