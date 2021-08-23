@@ -10,6 +10,11 @@ workspace "Walnut"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Walnut/vendor/GLFW/include"
+
+include "Walnut/vendor/GLFW"
+
 project "Walnut"
     location "Walnut"
     kind "SharedLib"
@@ -29,7 +34,13 @@ project "Walnut"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include/"
+        "%{prj.name}/vendor/spdlog/include/",
+        "%{IncludeDir.GLFW}"
+    }
+    links 
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
@@ -41,7 +52,7 @@ project "Walnut"
         {
             "WN_PLATFORM_WINDOWS",
             "WN_BUILD_DLL",
-            "_WINDLL"
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands
@@ -51,6 +62,7 @@ project "Walnut"
     
     filter "configurations:Debug"
         defines "WN_DEBUG"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
